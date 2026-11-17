@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ConsoleApp1/.vs/ConsoleApp1
+*.cache
+*.editorconfig
+*.targets
+/ConsoleApp1/ConsoleApp1/obj/ConsoleApp1.csproj.nuget.dgspec.json
+/ConsoleApp1/ConsoleApp1/obj/ConsoleApp1.csproj.nuget.g.props
+/ConsoleApp1/ConsoleApp1/obj/project.assets.json
+/ConsoleApp1/ConsoleApp1/obj/Debug/net8.0
