@@ -167,13 +167,16 @@ namespace ConsoleApp1
 
         public List<List<int>> transposedMatrix(List<List<int>> matrix)
         {
-            int currentRow = 0;
-            int currentCol = 0;
-            int[] transposedMatrixSize = [matrix.Count(), matrix[1].Count()];
+            
             List<List<int>> transposedMatrix = new List<List<int>>();
-            if (currentRow > matrix.Count() || currentCol > matrix[1].Count())
+            for(int col =0; col < matrix[0].Count(); col++)
             {
-                return transposedMatrix;
+                int[] newRow = new int[matrix.Count()];
+                for(int row = 0; row < matrix.Count(); row++)
+                {
+                    newRow[row] = matrix[row][col];
+                }
+                transposedMatrix.Add(newRow.ToList());
             }
             //if (matrix[0].Count)
             return transposedMatrix;
@@ -219,32 +222,39 @@ namespace ConsoleApp1
             return result;
         }
 
-        public List<List<int>> threeNumberSumOptimized(List<int> array, int targetSum, int currentNumPointer = 0)
+        public List<List<int>> threeNumberSumOptimized(List<int> array, int targetSum)
         {
-            if (currentNumPointer == 0)
-            {
-                array.Sort();
-            }
-            //int currentNumPointer = 0;
-            int windowCapacity = 2;
+            int left = 0;
+            int right = 0;
+            int numberToFind = 0;
+            array.Sort();
             List<List<int>> result = new List<List<int>>();
-
-            if (currentNumPointer >= array.Count() - 2)
+            for (int i = 0; i < array.Count() - 2; i++)
             {
-                return result;
-            }
-            else
-            {
-                for (int i = currentNumPointer + 1; i < (array.Count() - 2); i++)
+                left = i + 1;
+                right = array.Count() - 1;
+                numberToFind = targetSum - array[i];
+                while (left < right)
                 {
-                    if (array[currentNumPointer] + array[i] + array[i + 1] == targetSum)
+                    int sum = array[left] + array[right];
+                    if(sum == numberToFind)
                     {
-                        result.Add(new List<int> { array[currentNumPointer], array[i], array[i + 1] });
+                        result.Add(new List<int> { array[i], array[left], array[right] });
+                        left++;
+                        right--;
+                    }
+                    else if (sum < numberToFind)
+                    {
+                        left++;
+                    }
+                    else
+                    {
+                        right--;
                     }
                 }
-                currentNumPointer += 1;
-                threeNumberSumOptimized(array, targetSum, currentNumPointer);
+
             }
+                
 
             return result;
         }
